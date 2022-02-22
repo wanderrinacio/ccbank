@@ -7,5 +7,11 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ccbank?useTimezone=true&amp;serverTimezone=America/Sao_Paulo</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
+    <mapping class="domain.Cidade"/>
+    <mapping class="domain.Conta"/>
+    <mapping class="domain.Endereco"/>
+    <mapping class="domain.Historico"/>
+    <mapping class="domain.Pessoa"/>
+    <mapping class="domain.Usuario"/>
   </session-factory>
 </hibernate-configuration>
