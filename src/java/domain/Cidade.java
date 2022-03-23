@@ -1,6 +1,9 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +14,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@ManagedBean()
 @Table(name="cidade")
-public class Cidade implements Serializable{
+public class Cidade implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +31,10 @@ public class Cidade implements Serializable{
     @Column(name="uf")
     @Size(min=2, max=2)
     private String uf;
+    
+    private Double valor;
+    
+    private Date data;
     
     public Cidade(){
     }
@@ -60,9 +68,30 @@ public class Cidade implements Serializable{
     public void setUf(String uf) {
         this.uf = uf;
     }
+    
+    public Double getValor() {
+        return this.valor;
+    }
+    
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
 
     @Override
     public String toString() {
         return "Cidade{" + "id=" + id + ", nome=" + nome + ", uf=" + uf + '}';
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
+    
+    public boolean equals(Cidade c1) {
+        return this.getNome().equals(c1.getNome()) && this.getUf().equals(c1.getUf());
     }
 }

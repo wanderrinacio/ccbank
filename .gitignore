@@ -1,0 +1,5 @@
+/dist/
+/build/
+/web/WEB-INF/lib/*
+/nbproject/*
+/.ideia/

@@ -7,7 +7,12 @@ import utils.HibernateUtil;
 
 public class CidadeDao {
 
-    Session session = HibernateUtil.getSessionFactory().openSession();
+    private final Session session;
+    
+    public CidadeDao() {
+        session = HibernateUtil.getSessionFactory().openSession();
+    }
+     
 
     public List<Cidade> findAll(){
         session.beginTransaction();
