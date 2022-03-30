@@ -1,26 +1,38 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+ <ui:composition
+     xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>Dados da Cidade</title>
-    </h:head>
-    <h:body>
-        <h:link value="Nova Conta" outcome="novo" />
-        <h:form>
-            <h1> Listar Cidade </h1>
-        <!--
-                    <h:inputText id="nome" 
-                                 value="{cidade.id}"
-                                 style="width: 95%;"/>
-        <h:inputText id="uf" 
-                                 value="{cidadeMB.cidade.uf}"
-                                 style="width: 95%;"/>
-        <h:commandButton value="Salvar" 
-                         action="{cidadeMB.inserir()}"
-                         style="width: 150px; margin-right: 20px;"/> -->
-    </h:form>
-    </h:body>
-</html>
-
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="../layout/layout.xhtml">
+    <ui:define name="title">
+        Listar Cidades
+    </ui:define>
+     <ui:define name="content">
+         <h:form>
+           
+            <h:dataTable value="#{cidadeMB.todasCidades}" var="cidade">
+                <h:column >
+                    <f:facet name="header">Cidade</f:facet>
+                    #{cidade.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">UF</f:facet>
+                    #{cidade.uf}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Editar</f:facet>
+                    <h:commandLink value="Editar" action="#{cidadeMB.editar(cidade)}" />
+                    
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Excluir</f:facet>
+                    <h:commandLink value="Excluir" action="#{cidadeMB.excluir(cidade)}" />
+                   
+                </h:column>
+            </h:dataTable>
+            
+        </h:form>
+         <br/>
+         <h:link value="Nova Cidade" outcome="novo" />
+     </ui:define>
+ </ui:composition>
