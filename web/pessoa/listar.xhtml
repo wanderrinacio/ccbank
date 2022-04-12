@@ -1,0 +1,32 @@
+ <ui:composition
+     xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="../layout/layout.xhtml">
+    <ui:define name="title">
+        Listar Pessoas
+    </ui:define>
+     <ui:define name="content">
+         <h:form>
+           
+             <h:dataTable value="#{pessoaMB.todasPessoas}" var="pessoa">
+                <h:column >
+                    <f:facet name="header">Nome</f:facet>
+                    #{pessoa.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">CNPJ</f:facet>
+                    #{pessoa.cnpj}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Contas</f:facet>
+                    <h:commandLink value="Visualizar contas" action="#{pessoaMB.visualizarContas(pessoa)}" />                  
+                </h:column>
+            </h:dataTable>
+            
+        </h:form>
+         <br/>
+         <h:link value="Nova Pessoa" outcome="novo" />
+     </ui:define>
+ </ui:composition>

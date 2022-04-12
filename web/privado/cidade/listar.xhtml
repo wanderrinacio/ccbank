@@ -2,6 +2,7 @@
      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       template="../layout/layout.xhtml">
     <ui:define name="title">
@@ -10,26 +11,26 @@
      <ui:define name="content">
          <h:form>
            
-            <h:dataTable value="#{cidadeMB.todasCidades}" var="cidade">
-                <h:column >
-                    <f:facet name="header">Cidade</f:facet>
-                    #{cidade.nome}
-                </h:column>
-                <h:column>
+             <p:dataTable value="#{cidadeMB.cidades}" var="cidadeNova">
+                <p:column>
+                    <f:facet name="header">Nome</f:facet>
+                    #{cidadeNova.nome}
+                </p:column>
+                <p:column>
                     <f:facet name="header">UF</f:facet>
-                    #{cidade.uf}
-                </h:column>
-                <h:column>
+                    #{cidadeNova.uf}
+                </p:column>
+                <p:column>
                     <f:facet name="header">Editar</f:facet>
-                    <h:commandLink value="Editar" action="#{cidadeMB.editar(cidade)}" />
+                    <p:commandButton icon="ui-icon-pencil" title="Editar" action="#{cidadeMB.editar(cidadeNova)}" />
                     
-                </h:column>
-                <h:column>
+                </p:column>
+                <p:column>
                     <f:facet name="header">Excluir</f:facet>
-                    <h:commandLink value="Excluir" action="#{cidadeMB.excluir(cidade)}" />
+                    <p:commandButton icon="ui-icon-trash" value="Excluir" action="#{cidadeMB.excluir(cidadeNova)}" />
                    
-                </h:column>
-            </h:dataTable>
+                </p:column>
+            </p:dataTable>
             
         </h:form>
          <br/>

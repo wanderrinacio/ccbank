@@ -1,0 +1,29 @@
+ <ui:composition
+     xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="../layout/layout.xhtml">
+    <ui:define name="title">
+        Dados da Pessoa
+    </ui:define>
+    <ui:define name="content">
+        <h:form>
+        Usuário: 
+        <h:inputText id="numero" value="#{usuarioMB.usuario.login}"  >
+                <f:validateRequired />
+                <f:validateLength minimum="3" maximum="255" />
+            </h:inputText>
+            Senha: 
+            <h:inputSecret id="limite" value="#{usuarioMB.usuario.senha}" />                
+          
+
+            <h:commandButton value="Salvar" action="#{usuarioMB.inserir()}" />
+                
+
+            <br/>
+            <br/>
+            <br/>  
+        </h:form>
+    </ui:define>
+</ui:composition>

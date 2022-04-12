@@ -1,47 +1,48 @@
 package dao;
 
 import domain.Cidade;
+import domain.Conta;
 import java.util.List;
 import org.hibernate.Session;
 import utils.HibernateUtil;
 
-public class CidadeDao {
+public class ContaDao {
 
     private final Session session;
     
-    public CidadeDao() {
+    public ContaDao() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
      
 
-    public List<Cidade> findAll(){
+    public List<Conta> findAll(){
         session.beginTransaction();
         try{
-            List<Cidade> cidades = session.createQuery("from Cidade order by nome").list();
+            List<Conta> contas = session.createQuery("from Conta order by iiid").list();
             session.getTransaction().commit();
-            return cidades;
+            return contas;
         }catch(Exception e){
             session.getTransaction().rollback();
             return null;
         }
     }
 
-    public Cidade findById(Integer id){
+    public Conta findById(Integer id){
         session.beginTransaction();
         try{
-            Cidade cidade = (Cidade)session.createQuery("from Cidade where id = " + id).uniqueResult();
+            Conta conta = (Conta)session.createQuery("from Conta where id = " + id).uniqueResult();
             session.getTransaction().commit();
-            return cidade;
+            return conta;
         }catch(Exception e){
             session.getTransaction().rollback();
             return null;
         }
     }
 
-    public boolean insert(Cidade cidade){
+    public boolean insert(Conta conta){
         session.beginTransaction();
-        try{            
-            session.save(cidade);
+        try{
+            session.save(conta);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){
@@ -50,10 +51,10 @@ public class CidadeDao {
         }
     }
 
-    public boolean update(Cidade cidade){
+    public boolean update(Conta conta){
         session.beginTransaction();
         try{
-            session.update(cidade);
+            session.update(conta);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){
@@ -62,10 +63,10 @@ public class CidadeDao {
         }
     }
 
-    public boolean delete(Cidade cidade){
+    public boolean delete(Conta conta){
         session.beginTransaction();
         try{
-            session.delete(cidade);
+            session.delete(conta);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){

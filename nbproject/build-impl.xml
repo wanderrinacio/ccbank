@@ -1006,8 +1006,10 @@ exists or setup the property manually. For example like this:
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,-do-dist-with-manifest,-do-dist-without-manifest" name="do-dist"/>
     <target depends="init" if="dist.ear.dir" name="library-inclusion-in-manifest">
+        <copyfiles files="${libs.JAVADB_DRIVER_LABEL.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.Hibernate_4.3.11.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.CDI.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.primefaces-8.0.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.Hibernate_4.3.11.classpath}" todir="${build.web.dir}//"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update"/>
@@ -1015,6 +1017,7 @@ exists or setup the property manually. For example like this:
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
         <copyfiles files="${libs.Hibernate_4.3.11.classpath}" todir="${build.web.dir}/WEB-INF/classes"/>
         <copyfiles files="${libs.CDI.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.primefaces-8.0.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.Hibernate_4.3.11.classpath}" todir="${build.web.dir}//"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
@@ -1165,7 +1168,6 @@ exists or setup the property manually. For example like this:
     <target depends="init,-init-cos,compile,compile-jsps,-do-compile-single-jsp,-pre-dist,-do-tmp-dist-with-manifest,-do-tmp-dist-without-manifest" description="Debug project in IDE." if="netbeans.home" name="debug">
         <nbstartserver debugmode="true"/>
         <antcall target="connect-debugger"/>
-        <nbdeploy clientUrlPart="${client.urlPart}" debugmode="true" forceRedeploy="true"/>
         <antcall target="debug-display-browser-old"/>
         <antcall target="debug-display-browser"/>
         <antcall target="connect-client-debugger"/>
@@ -1190,7 +1192,6 @@ exists or setup the property manually. For example like this:
         <nbbrowse url="${client.url}"/>
     </target>
     <target if="do.display.browser.debug" name="debug-display-browser">
-        <nbbrowse context="${browser.context}" url="${client.url}" urlPath="${client.urlPart}"/>
     </target>
     <target if="do.debug.client" name="connect-client-debugger">
         <webproject1:nbjsdebugstart webUrl="${client.url}"/>

@@ -1,0 +1,31 @@
+ <ui:composition
+     xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="../layout/layout.xhtml">
+    <ui:define name="title">
+        Editar Pessoa
+    </ui:define>
+    <ui:define name="content">
+        <h:form>
+            ID: <h:outputText value="#{cidadeMB.cidade.id}" />
+            <br/>
+            Nome: 
+            <h:inputText id="nome" value="#{cidadeMB.cidade.nome}"  >
+                <f:validateRequired />
+                <f:validateLength minimum="3" maximum="255" />
+            </h:inputText>
+            UF: 
+            <h:inputText id="uf" value="#{cidadeMB.cidade.uf}" >
+
+                <f:validateRequired />
+                <f:validateLength minimum="2" maximum="2" />
+                <f:validator validatorId="UFValidator" />
+            </h:inputText>
+
+            <h:commandButton value="Salvar" action="#{cidadeMB.atualizar()}" />
+                
+        </h:form>
+    </ui:define>
+</ui:composition>

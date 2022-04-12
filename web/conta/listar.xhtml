@@ -1,0 +1,32 @@
+ <ui:composition
+     xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="../layout/layout.xhtml">
+    <ui:define name="title">
+        Listar Contas
+    </ui:define>
+     <ui:define name="content">
+         <h:form>
+           
+             <h:dataTable value="#{contaMB.todasContas}" var="conta">
+                <h:column >
+                    <f:facet name="header">Numero</f:facet>
+                    #{conta.numero}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Saldo</f:facet>
+                    #{conta.saldo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Movimentar</f:facet>
+                    <h:commandLink value="Editar" action="#{contaMB.movimentar(conta)}" />                  
+                </h:column>
+            </h:dataTable>
+            
+        </h:form>
+         <br/>
+         <h:link value="Nova Conta" outcome="novo" />
+     </ui:define>
+ </ui:composition>

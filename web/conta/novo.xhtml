@@ -1,0 +1,37 @@
+<html xmlns:p="http://primefaces.org/ui"> 
+<ui:composition
+     xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="../layout/layout.xhtml">
+    <ui:define name="title">
+        Dados da Conta
+    </ui:define>
+    <ui:define name="content">
+        <h:form>            
+        Número: 
+        <h:inputText id="numero" value="#{contaMB.conta.numero}"  >
+                <f:validateRequired />
+                <f:validateLength minimum="3" maximum="255" />
+            </h:inputText>
+            Limite: 
+            <h:inputText id="limite" value="#{contaMB.conta.limite}"  >
+                <f:validateRequired />
+                <f:convertNumber  />
+            </h:inputText>
+            Saldo Inicial: 
+            <h:inputText id="saldo" value="#{contaMB.conta.saldo}"  >
+                <f:validateRequired />
+                <f:convertNumber  />
+            </h:inputText>
+
+            <h:commandButton value="Salvar" action="#{contaMB.inserir()}" />
+                
+            <br/>
+            <br/>
+            <br/>  
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

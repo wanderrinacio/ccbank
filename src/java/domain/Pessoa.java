@@ -6,6 +6,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -96,13 +97,21 @@ public class Pessoa implements Serializable {
     private List<Conta> contaList;
 
     public Pessoa() {
+        if (enderecoList == null) {
+            enderecoList = new ArrayList<>();
+        }
+        if (contaList == null) {
+            contaList = new ArrayList<>();
+        }
     }
 
     public Pessoa(Integer id) {
+        super();
         this.id = id;
     }
 
     public Pessoa(Integer id, String nome, String telefone, String email, String tipoPessoa) {
+        super();
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;

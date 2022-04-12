@@ -1,0 +1,28 @@
+ <ui:composition
+     xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="../layout/layout.xhtml">
+    <ui:define name="title">
+        Listar Usuarios
+    </ui:define>
+     <ui:define name="content">
+         <h:form>
+           
+             <h:dataTable value="#{usuarioMB.todosUsuarios}" var="usuario">
+                <h:column >
+                    <f:facet name="header">Login</f:facet>
+                    #{usuario.login}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Pessoas</f:facet>
+                    <h:commandLink value="Visualizar pessoas" action="#{pessoaMB.getListaPessoas(null)}" />                  
+                </h:column>
+            </h:dataTable>
+            
+        </h:form>
+         <br/>
+         <h:link value="Nova Usuario" outcome="novo" />
+     </ui:define>
+ </ui:composition>

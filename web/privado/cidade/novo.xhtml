@@ -1,0 +1,39 @@
+ <ui:composition
+     xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="../layout/layout.xhtml"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">
+        Dados da Cidade
+    </ui:define>
+    <ui:define name="content">
+        <h:form>                   
+            <f:view id="view" contentType="text/html" locale="en_US" >
+                <f:loadBundle basename="mensagem.Mensagens" var="msg"/>
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="nome" value="#{msg.nome}:"/>       
+                    <p:inputText id="nome" value="#{cidadeMB.cidade.nome}" >
+                        <f:validateRequired for="nome" />
+                        <f:validateLength minimum="3" maximum="255" for="nome"/>
+                    </p:inputText>  
+                    <p:outputLabel for="uf" value="#{msg.uf}:"/>                
+                    <p:inputText id="uf" value="#{cidadeMB.cidade.uf}" >
+                        <f:validateRequired  />
+                        <f:validateLength minimum="2" maximum="2" />
+                        <f:validator validatorId="UFValidator" />
+                    </p:inputText>
+
+                    <p:commandButton value="Salvar" action="#{cidadeMB.inserir()}"  update="messages"/>
+
+                </p:panelGrid>
+                <p:messages id="messages" showDetail="true" />
+            </f:view>
+            <br/>
+            <br/>
+            <br/>
+            <!--h:outputText id="saida1" value="Foi inserida a Cidade #{cidadeMB.cidade.nome}, UF: #{cidadeMB.cidade.uf}" /-->
+        </h:form>
+    </ui:define>
+</ui:composition>

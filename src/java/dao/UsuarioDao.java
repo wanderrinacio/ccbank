@@ -1,47 +1,53 @@
 package dao;
 
 import domain.Cidade;
+import domain.Usuario;
 import java.util.List;
 import org.hibernate.Session;
 import utils.HibernateUtil;
 
-public class CidadeDao {
+public class UsuarioDao {
 
     private final Session session;
     
-    public CidadeDao() {
+    public UsuarioDao() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
      
+    public void inicializarHibernate(){
+        Session atual = HibernateUtil.getSessionFactory().getCurrentSession();
+        atual.beginTransaction();
+        atual.getTransaction().commit();
+    }
 
-    public List<Cidade> findAll(){
+    public List<Usuario> findAll(){
         session.beginTransaction();
         try{
-            List<Cidade> cidades = session.createQuery("from Cidade order by nome").list();
+            List<Usuario> usuarios = session.createQuery("from Usuario order by id").list();
             session.getTransaction().commit();
-            return cidades;
+            return usuarios;
         }catch(Exception e){
             session.getTransaction().rollback();
             return null;
         }
     }
 
-    public Cidade findById(Integer id){
+    public Usuario findById(Integer id){
         session.beginTransaction();
         try{
-            Cidade cidade = (Cidade)session.createQuery("from Cidade where id = " + id).uniqueResult();
+            Usuario usuario = (Usuario)session.createQuery("from Usuario where id = " + id).uniqueResult();
             session.getTransaction().commit();
-            return cidade;
+            return usuario;
         }catch(Exception e){
             session.getTransaction().rollback();
             return null;
         }
     }
 
-    public boolean insert(Cidade cidade){
+    public boolean insert(Usuario usuario){
         session.beginTransaction();
-        try{            
-            session.save(cidade);
+        try{
+            session.save(usuario);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){
@@ -50,10 +56,10 @@ public class CidadeDao {
         }
     }
 
-    public boolean update(Cidade cidade){
+    public boolean update(Usuario usuario){
         session.beginTransaction();
         try{
-            session.update(cidade);
+            session.update(usuario);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){
@@ -62,10 +68,10 @@ public class CidadeDao {
         }
     }
 
-    public boolean delete(Cidade cidade){
+    public boolean delete(Usuario usuario){
         session.beginTransaction();
         try{
-            session.delete(cidade);
+            session.delete(usuario);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){

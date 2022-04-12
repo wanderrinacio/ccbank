@@ -29,8 +29,7 @@ public class UFValidator implements Validator<Object> {
             posicao++;
         } while ((!achou) &&(posicao < listaUFs.length));
         if (!achou) {
-            FacesMessage message = new FacesMessage("UF inválida informada","Validação de UF falhou");
-            context.addMessage("UF_INVALIDA", message);
+            UtilMensagens.mensagemErro("UF:", "UF inválida informada");
         }
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

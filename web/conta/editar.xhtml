@@ -5,24 +5,16 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       template="../layout/layout.xhtml">
     <ui:define name="title">
-        Dados da Cidade
+        Editar Conta
     </ui:define>
     <ui:define name="content">
         <h:form>
-        Nome: 
+            ID: <h:outputText value="#{cidadeMB.cidade.id}" />
+            <br/>
+            Nome: 
             <h:inputText id="nome" value="#{cidadeMB.cidade.nome}"  >
                 <f:validateRequired />
                 <f:validateLength minimum="3" maximum="255" />
-            </h:inputText>
-            Valor: 
-            <h:inputText id="valor" value="#{cidadeMB.cidade.valor}"  >
-                <f:validateRequired />
-                <f:convertNumber  />
-            </h:inputText>
-            Data: 
-            <h:inputText id="data" value="#{cidadeMB.cidade.data}"  >
-                <f:validateRequired />
-                <f:convertDateTime pattern="dd/MM/yyyy"  />
             </h:inputText>
             UF: 
             <h:inputText id="uf" value="#{cidadeMB.cidade.uf}" >
@@ -32,13 +24,8 @@
                 <f:validator validatorId="UFValidator" />
             </h:inputText>
 
-            <h:commandButton value="Salvar" action="#{cidadeMB.inserir()}" />
+            <h:commandButton value="Salvar" action="#{cidadeMB.atualizar()}" />
                 
-
-            <br/>
-            <br/>
-            <br/>
-            <!--h:outputText id="saida1" value="Foi inserida a Cidade #{cidadeMB.cidade.nome}, UF: #{cidadeMB.cidade.uf}" /-->
         </h:form>
     </ui:define>
 </ui:composition>

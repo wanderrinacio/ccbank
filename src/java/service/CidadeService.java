@@ -21,13 +21,13 @@ public class CidadeService {
         cidadeDao = new CidadeDao();
     }
     
-    public Cidade inserir(Cidade cidade) {
+    public boolean inserir(Cidade cidade) {
        
         // verificar se a cidade e esta ja existe
         // se no existe, inserir no banco de dados e retornar a cidade com o codigo gerado
         // se existe, retornar erro de nao foi possivel inserir
-        cidadeDao.insert(cidade);
-        return null;
+        
+        return cidadeDao.insert(cidade);
     }
     
     public void editar(Cidade cidade) {

@@ -12,6 +12,7 @@
                 </library>
                 <library dirs="200">
                     <file>${libs.JAVADB_DRIVER_LABEL.classpath}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.mysql-connector-java-8.0.27.jar}</file>
@@ -22,6 +23,10 @@
                 </library>
                 <library dirs="200">
                     <file>${libs.CDI.classpath}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.primefaces-8.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
@@ -38,5 +43,6 @@
                 <root id="test.src.dir" name="Pacotes de Teste"/>
             </test-roots>
         </data>
+        <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1"/>
     </configuration>
 </project>

@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>
             <ui:insert name="title">Título Padrão</ui:insert>
@@ -15,6 +16,8 @@
         <div id="conteudo">
             <ui:insert name="content">Conteúdo Padrão</ui:insert>
         </div>
+        <p:growl id="growl" life="5000" showDetail="true"/>
+        <h:messages />
         <div id="rodape">
             <ui:include src="rodape.xhtml" />
         </div>
